@@ -2,7 +2,7 @@
 County+ database search CLI
 ---
 The county+ application is a continuation of the CountyDatabase github repo: https://github.com/cwdatlas/CountyDatabase.
-This Database is accessed using a command then arguments delimited by spaces.
+This Database is accessed using a command with arguments delimited by spaces.
 
 ---
 how to install
@@ -20,15 +20,15 @@ you must have git and python installed to run this program
 how to use
 ---
 The commands in this program were inspired by the structure of linux type commands. 
-There are 4 commands avaliable:
+There are 4 commands available:
 - add 'city name' 'county name'
   - when adding a city, your city must be unique and your stated county must exist.
   - example: 'add toston broadwater'
 - get 'city/county/code' name
   - when getting a city, county or code you will need to specify which object type you wish to search.
   - The object must exist and there are no spaces in any city names or county names.
-  - example: 'get city toston' or 'get county luis&clark'
+  - example: 'get city montanacity' or 'get county luis&clark'
 - help
   - Provides help similar to what is seen here
 - quit
-  - safes quits the program
+  - safely quits the program
