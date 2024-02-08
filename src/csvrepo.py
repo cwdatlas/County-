@@ -8,17 +8,19 @@ logger = logging.getLogger('csv_repo')
 
 class CsvRepo:
     # The CSV repo using a csv file and pandas to easily read and write and write county/city/code information.
+    # Programmed by Aidan Scott with help from Nate Anderson (Tester)
     def __init__(self):
         # Reading Data from stated CSV file using pandas
         modpath = os.path.dirname(os.path.abspath(sys.prefix))
         self.file_path = modpath + r"/resources/CountyRepo.csv"
+        # If file not found throw an error and state what went wrong
         try:
             logger.debug(f"INIT: Reading CSV from : '{self.file_path}'")
             self.repo = pd.read_csv(self.file_path, skipinitialspace=True)
         except FileNotFoundError:
             logger.error(f"INIT: File not found in path '{self.file_path}'")
 
-        # Fix the DataFrame (I did copy this section from chatGPT. I was having some ISSUES)
+        # Fix the DataFrame (I did copy this section from chatGPT. I was having some ISSUES) - again
         self.repo.columns = [col if not pd.isna(col) else 'YourNewColumnName' for col in self.repo.columns]
         self.repo = self.repo.loc[:, ~self.repo.columns.str.contains('^Unnamed')]
 
@@ -54,6 +56,8 @@ class CsvRepo:
         rows_by_code = self.repo[self.repo['License Plate Prefix'] == code]
         return rows_by_code.to_dict(orient='records')
 
+    # Save Repo to csv file. this happens every time an item is saved.
+    # In a situation where more rows are being added, the application can save less often.
     def save_repo(self) -> None:
         try:
             self.repo.to_csv(self.file_path, mode='w')
