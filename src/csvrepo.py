@@ -11,8 +11,7 @@ class CsvRepo:
     # Programmed by Aidan Scott with help from Nate Anderson (Tester)
     def __init__(self):
         # Reading Data from stated CSV file using pandas
-        modpath = os.path.dirname(os.path.abspath(sys.prefix))
-        self.file_path = modpath + r"/resources/CountyRepo.csv"
+        self.file_path = r"../resources/CountyRepo.csv"
         # If file not found throw an error and state what went wrong
         try:
             logger.debug(f"INIT: Reading CSV from : '{self.file_path}'")
